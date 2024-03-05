@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -25,6 +26,8 @@ public class AuthService {
         UserDetails user = userRepository.findByUsername(request.getUsername()).orElseThrow();
         String token=jwtService.getToken(user);
         return AuthResponse.builder()
+                .username(request.getUsername())
+                .password(request.getPassword())
                 .token(token)
                 .build();
     }
@@ -43,6 +46,8 @@ public class AuthService {
 
         return AuthResponse.builder()
                 .token(jwtService.getToken(user))
+                .username(request.getUsername())
+                .password(request.getPassword())
                 .build();
 
     }

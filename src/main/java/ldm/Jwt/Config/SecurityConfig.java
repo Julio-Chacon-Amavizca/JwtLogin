@@ -19,6 +19,9 @@ public class SecurityConfig {
 
         private final JwtAuthenticationFilter jwtAuthenticationFilter;
         private final AuthenticationProvider authProvider;
+
+
+        
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
 
